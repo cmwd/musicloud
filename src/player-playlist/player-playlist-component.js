@@ -1,5 +1,5 @@
-import React, { PropTypes } from "react";
-import { View, Button } from "react-native";
+import React, { PropTypes } from 'react';
+import { View, ScrollView, Button } from 'react-native';
 
 function PlaylistItem(props) {
   const { onSelectPlaylistItem, ...rest } = props;
@@ -23,7 +23,7 @@ PlaylistItem.propTypes = {
 
 export default function PlayerPlaylistComponent(props) {
   return (
-    <View>
+    <ScrollView>
       {props.playlist.map(item => (
         <PlaylistItem
           key={item.id}
@@ -31,7 +31,7 @@ export default function PlayerPlaylistComponent(props) {
           onSelectPlaylistItem={props.load}
         />
       ))}
-    </View>
+    </ScrollView>
   );
 }
 

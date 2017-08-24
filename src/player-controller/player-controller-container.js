@@ -1,5 +1,9 @@
-import { PureComponent, PropTypes } from "react";
-import { Audio } from "expo";
+import { PureComponent, PropTypes } from 'react';
+import { Audio } from 'expo';
+
+const generateFakeWave = length => Array.from({ length }, () => Math.random());
+const createGeneratorInterval = cb =>
+  setInterval(() => cb(generateFakeWave(5)), 250);
 
 class PlayerController extends PureComponent {
   constructor(props, context) {
@@ -8,11 +12,13 @@ class PlayerController extends PureComponent {
     const { children, handlePlayerError, ...initialState } = props;
 
     this.state = {
+      wave: [],
       isPlaying: false,
       isBufering: false,
       ...initialState
     };
     this.playbackInstance = null;
+    this.waveGeneratorInterval = null;
 
     this.handlePlaybackUpdate = this.handlePlaybackUpdate.bind(this);
     this.play = this.play.bind(this);
@@ -40,6 +46,15 @@ class PlayerController extends PureComponent {
   }
 
   handlePlaybackUpdate(status) {
+    if (!this.waveGeneratorInterval && status.isPlaying) {
+      this.waveGeneratorInterval = createGeneratorInterval(wave =>
+        this.setState({ wave })
+      );
+    } else if (this.waveGeneratorInterval && !status.isPlaying) {
+      clearInterval(this.waveGeneratorInterval);
+      this.waveGeneratorInterval = null;
+    }
+
     this.setState(status);
   }
 

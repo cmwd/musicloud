@@ -1,14 +1,14 @@
-import React, { Component, PropTypes } from "react";
-import glamorous, { withTheme } from "glamorous-native";
-import Icon from "react-native-vector-icons/FontAwesome";
+import React, { Component, PropTypes } from 'react';
+import glamorous, { withTheme } from 'glamorous-native';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 const Container = withTheme(
   glamorous.view(
     {
-      flexWrap: "wrap",
-      flexDirection: "row",
-      justifyContent: "space-between",
-      alignItems: "center",
+      flexWrap: 'wrap',
+      flexDirection: 'row',
+      justifyContent: 'space-between',
+      alignItems: 'center',
       paddingTop: 25
     },
     props => ({
@@ -19,18 +19,18 @@ const Container = withTheme(
 );
 
 const Header = glamorous.view({
-  flexWrap: "wrap",
-  alignItems: "center"
+  flexWrap: 'wrap',
+  alignItems: 'center'
 });
 
 const HeaderTitle = withTheme(
-  glamorous.text({ fontWeight: "bold" }, props => ({
+  glamorous.text({ fontWeight: 'bold' }, props => ({
     color: props.theme.primaryColor
   }))
 );
 
 const SongTitle = glamorous.text({
-  color: "black"
+  color: 'black'
 });
 
 function PlayerTopbarComponent(props) {
@@ -63,7 +63,7 @@ PlayerTopbarComponent.propTypes = {
 };
 
 PlayerTopbarComponent.defaultProps = {
-  title: "Title"
+  title: 'Title'
 };
 
 export default withTheme(PlayerTopbarComponent);
