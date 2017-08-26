@@ -3,7 +3,7 @@ import { Audio } from 'expo';
 
 const generateFakeWave = length => Array.from({ length }, () => Math.random());
 const createGeneratorInterval = cb =>
-  setInterval(() => cb(generateFakeWave(5)), 250);
+  setInterval(() => cb(generateFakeWave(30)), 250);
 
 class PlayerController extends PureComponent {
   constructor(props, context) {
